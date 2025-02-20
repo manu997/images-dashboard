@@ -9,7 +9,10 @@ export const ImageContainer = ({ node }: ImageContainerProps) => {
   return (
     <figure key={node.title} className="image-container">
       <div className="image-price-background">
-        <span className="image-price">{node.price}€</span>
+        <span className="image-price">
+          {node.price.toFixed(2)}
+          <small>€</small>
+        </span>
       </div>
       <img src={node.picture} alt={node.title} />
       <figcaption>
