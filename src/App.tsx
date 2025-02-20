@@ -1,35 +1,49 @@
-import { useState } from "react"
-import viteLogo from "/vite.svg"
-import reactLogo from "./assets/react.svg"
-import "./App.css"
+import { useCallback, useState } from "react";
+import useGetImages, {
+  type GetImagesWithPaginationParams,
+} from "./queries/useGetImages";
+import { data } from "./queries/mock.json";
+import "./styles/app.css";
+import { ImageContainer } from "./components/ImageContainer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [params, setParams] = useState<GetImagesWithPaginationParams>({
+  //   after: "",
+  //   first: 9,
+  // });
+
+  // const { data, error, isLoading } = useGetImages(params);
+
+  // const onReachEnd = useCallback(() => {
+  //   setParams((prev) => ({
+  //     first: prev.first + 9,
+  //     after: data?.images.pageInfo.endCursor || "",
+  //   }));
+  // }, [data?.images.pageInfo.endCursor]);
+
+  // // if (error) {
+  // //   return <>{error.message}</>;
+  // // }
+
+  // // if (isLoading) {
+  // //   return <>Loading...</>;
+  // // }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} type="button">
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <img src="SAMY.svg" alt="logo_primary" />
+        <input type="text" placeholder="Search" />
+      </header>
+      <main>
+        <div className="image-grid">
+          {data?.images.edges.map((edge) => (
+            <ImageContainer key={edge.node.id} node={edge.node} />
+          ))}
+        </div>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

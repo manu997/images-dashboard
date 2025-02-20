@@ -1,0 +1,320 @@
+{
+  "data": {
+    "images": {
+      "edges": [
+        {
+          "node": {
+            "author": "Seurat",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "1",
+            "liked": true,
+            "likesCount": 474,
+            "picture": "https://loremflickr.com/300/300?random=0",
+            "price": 64,
+            "title": "Die Hard",
+            "updatedAt": "2025-02-20T19:12:42Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Degas",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "2",
+            "liked": true,
+            "likesCount": 188,
+            "picture": "https://loremflickr.com/300/300?random=1",
+            "price": 149,
+            "title": "Seven Samurai",
+            "updatedAt": "2025-02-20T17:37:25Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Diego Rivera",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "3",
+            "liked": true,
+            "likesCount": 331,
+            "picture": "https://loremflickr.com/300/300?random=2",
+            "price": 388,
+            "title": "Into the Wild",
+            "updatedAt": "2025-02-20T17:37:31Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Seurat",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "4",
+            "liked": false,
+            "likesCount": 118,
+            "picture": "https://loremflickr.com/300/300?random=3",
+            "price": 425,
+            "title": "Gone Girl",
+            "updatedAt": "2025-02-20T17:37:39Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Munch",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "5",
+            "liked": true,
+            "likesCount": 110,
+            "picture": "https://loremflickr.com/300/300?random=4",
+            "price": 455,
+            "title": "12 Years a Slave",
+            "updatedAt": "2025-02-11T16:05:53Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Donatello",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "6",
+            "liked": false,
+            "likesCount": 147,
+            "picture": "https://loremflickr.com/300/300?random=5",
+            "price": 127,
+            "title": "Taxi Driver",
+            "updatedAt": "2025-02-20T17:37:40Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Cezanne",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "7",
+            "liked": false,
+            "likesCount": 405,
+            "picture": "https://loremflickr.com/300/300?random=6",
+            "price": 386,
+            "title": "No Country for Old Men",
+            "updatedAt": "2025-02-20T17:37:40Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Pollock",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "8",
+            "liked": true,
+            "likesCount": 225,
+            "picture": "https://loremflickr.com/300/300?random=7",
+            "price": 96,
+            "title": "Apocalypse Now",
+            "updatedAt": "2025-02-20T17:37:34Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Edward Hopper",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "9",
+            "liked": true,
+            "likesCount": 189,
+            "picture": "https://loremflickr.com/300/300?random=8",
+            "price": 19,
+            "title": "Monsters, Inc.",
+            "updatedAt": "2025-02-09T21:51:05Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Paul Klee",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "10",
+            "liked": true,
+            "likesCount": 50,
+            "picture": "https://loremflickr.com/300/300?random=9",
+            "price": 319,
+            "title": "Vertigo",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Renoir",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "11",
+            "liked": true,
+            "likesCount": 426,
+            "picture": "https://loremflickr.com/300/300?random=10",
+            "price": 430,
+            "title": "Star Wars: Episode IX – The Rise of Skywalker",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Rothko",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "12",
+            "liked": true,
+            "likesCount": 103,
+            "picture": "https://loremflickr.com/300/300?random=11",
+            "price": 334,
+            "title": "Donnie Darko",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Warhol",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "13",
+            "liked": true,
+            "likesCount": 280,
+            "picture": "https://loremflickr.com/300/300?random=12",
+            "price": 60,
+            "title": "The Matrix",
+            "updatedAt": "2025-01-10T13:07:45Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Dali",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "14",
+            "liked": true,
+            "likesCount": 24,
+            "picture": "https://loremflickr.com/300/300?random=13",
+            "price": 214,
+            "title": "Modern Times",
+            "updatedAt": "2025-01-10T13:07:47Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Dali",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "15",
+            "liked": true,
+            "likesCount": 111,
+            "picture": "https://loremflickr.com/300/300?random=14",
+            "price": 194,
+            "title": "Blade Runner",
+            "updatedAt": "2025-02-12T13:52:14Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Joan Miro",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "16",
+            "liked": true,
+            "likesCount": 251,
+            "picture": "https://loremflickr.com/300/300?random=15",
+            "price": 171,
+            "title": "Interstellar",
+            "updatedAt": "2025-01-09T09:10:08Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Warhol",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "17",
+            "liked": false,
+            "likesCount": 7,
+            "picture": "https://loremflickr.com/300/300?random=16",
+            "price": 70,
+            "title": "Blade Runner",
+            "updatedAt": "2025-02-12T11:39:41Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Edward Hopper",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "18",
+            "liked": true,
+            "likesCount": 341,
+            "picture": "https://loremflickr.com/300/300?random=17",
+            "price": 65,
+            "title": "Twelve Monkeys",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "El Greco",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "19",
+            "liked": true,
+            "likesCount": 311,
+            "picture": "https://loremflickr.com/300/300?random=18",
+            "price": 488,
+            "title": "Star Wars: Episode V - The Empire Strikes Back",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Munch",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "20",
+            "liked": false,
+            "likesCount": 234,
+            "picture": "https://loremflickr.com/300/300?random=19",
+            "price": 233,
+            "title": "The Gold Rush",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Degas",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "21",
+            "liked": false,
+            "likesCount": 321,
+            "picture": "https://loremflickr.com/300/300?random=20",
+            "price": 185,
+            "title": "Judgment at Nuremberg",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Manet",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "22",
+            "liked": false,
+            "likesCount": 269,
+            "picture": "https://loremflickr.com/300/300?random=21",
+            "price": 288,
+            "title": "The Departed",
+            "updatedAt": "2025-01-15T16:43:14Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Munch",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "23",
+            "liked": false,
+            "likesCount": 11,
+            "picture": "https://loremflickr.com/300/300?random=22",
+            "price": 336,
+            "title": "To Kill a Mockingbird",
+            "updatedAt": "2025-01-09T08:27:16Z"
+          }
+        },
+        {
+          "node": {
+            "author": "Chagall",
+            "createdAt": "2024-12-10T17:22:57Z",
+            "id": "24",
+            "liked": false,
+            "likesCount": 40,
+            "picture": "https://loremflickr.com/300/300?random=23",
+            "price": 196,
+            "title": "Shutter Island",
+            "updatedAt": "2025-02-08T17:21:02Z"
+          }
+        }
+      ]
+    }
+  }
+}
