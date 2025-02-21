@@ -1,5 +1,5 @@
-import type { Image } from "../types";
-import "../styles/imaged-grid.css";
+import type { Image } from "../../types";
+import "./imaged-container.css";
 
 interface ImageContainerProps {
   node: Image;

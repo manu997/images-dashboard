@@ -1,5 +1,5 @@
 .image-container {
-  border: #d3d3d3 1px solid;
+  border: var(--color-light-5) 1px solid;
   text-align: center;
   margin: 0;
   width: 100%;
@@ -12,8 +12,8 @@
   border-left: 5.5rem solid transparent;
   border-right: 4.5rem solid transparent;
   border-bottom: 4.5rem solid transparent;
-  border-top-color: #ffffff;
-  border-left-color: #ffffff;
+  border-top-color: var(--color-light-1);
+  border-left-color: var(--color-light-1);
 }
 
 .image-price {
@@ -36,18 +36,20 @@ figcaption {
 }
 
 .author-label {
-  color: #bfbfbe;
+  color: var(--color-dark-1);
   margin-right: 0.3rem;
 }
 
 @media (max-width: 1280px) {
   .image-grid {
     grid-template-columns: repeat(2, 1fr);
+    margin: 0 5%;
   }
 }
 
 @media (max-width: 700px) {
   .image-grid {
     grid-template-columns: 1fr;
+    margin: 0 1%;
   }
 }

@@ -4,7 +4,9 @@ import useGetImages, {
 } from "./queries/useGetImages";
 import { data } from "./queries/mock.json";
 import "./styles/app.css";
-import { ImageContainer } from "./components/ImageContainer";
+import { ImageContainer } from "./components/ImageContainer/ImageContainer";
+import Input from "./components/Input/Input";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   // const [params, setParams] = useState<GetImagesWithPaginationParams>({
@@ -33,7 +35,12 @@ function App() {
     <>
       <header>
         <img src="SAMY.svg" alt="logo_primary" />
-        <input type="text" placeholder="Search" />
+        <Input
+          icon={faSearch}
+          type="text"
+          placeholder="You're looking for something?"
+          className="header-search"
+        />
       </header>
       <main>
         <div className="image-grid">

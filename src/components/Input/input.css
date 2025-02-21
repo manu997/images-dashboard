@@ -1,0 +1,39 @@
+.input-container {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+}
+
+.search-input::placeholder {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-light-3);
+  background-color: var(--color-light-3);
+  border-radius: 20px;
+  width: 15rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: #202020;
+}
+
+.search-input-icon {
+  padding-left: 2.5rem;
+}
+
+.search-input:focus-visible {
+  outline: 1px solid var(--color-light-4);
+}
+
+.search-input:hover {
+  background-color: var(--color-light-4);
+  transition: background-color 0.3s;
+}

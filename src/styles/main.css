@@ -1,4 +1,17 @@
+:root {
+  --color-light-1: #ffffff;
+  --color-light-2: #f6f6f6;
+  --color-light-3: #f2f2f2;
+  --color-light-4: #eaeaea;
+  --color-light-5: #d3d3d3;
+
+  --color-dark-1: #bfbfbe;
+  --color-dark-2: #202020;
+
+  --font-main: "Inter", sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-main);
 }
