@@ -23,7 +23,7 @@ const getImagesWithPagination = async ({
   after,
   first,
 }: GetImagesWithPaginationParams) => {
-  const response = await request<GetImagesWithPaginationResponse>(
+  const data = await request<GetImagesWithPaginationResponse>(
     "https://sandbox-api-test.samyroad.com/graphql",
     gql`
       query GetImagesWithPagination(
@@ -31,23 +31,24 @@ const getImagesWithPagination = async ({
         $first: Int
       ) {
         images(after: $after, first: $first) {
-            edges {
-                cursor,
-                node {
-                    author
-                    liked
-                    likesCount
-                    picture
-                    price
-                    title
-                }
-            },
-            pageInfo {
-                endCursor
-                hasNextPage
-                hasPreviousPage
-                startCursor
-            }
+          edges {
+              cursor,
+              node {
+                  author
+                  liked
+                  likesCount
+                  picture
+                  price
+                  title
+                  id
+              }
+          },
+          pageInfo {
+              endCursor
+              hasNextPage
+              hasPreviousPage
+              startCursor
+          }
         }
       }
     `,
@@ -57,14 +58,15 @@ const getImagesWithPagination = async ({
     },
   );
 
-  const { data, error } = getImagesWithPaginationResponse.safeParse(response);
+  const { data: parsedData, error } =
+    getImagesWithPaginationResponse.safeParse(data);
 
   if (error) {
     console.error(error.errors);
     throw new Error(error.errors.map((e) => e.message).join(", "));
   }
 
-  return data;
+  return parsedData;
 };
 
 export const USE_GET_IMAGES_KEY = "getImagesWithPagination";

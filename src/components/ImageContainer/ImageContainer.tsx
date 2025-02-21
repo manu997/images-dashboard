@@ -6,11 +6,18 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useCallback, useState } from "react";
 interface ImageContainerProps {
   node: Image;
 }
 
 export const ImageContainer = ({ node }: ImageContainerProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleImageLoad = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
   return (
     <figure key={node.title} className="image-container">
       <div className="image-wrapper">
@@ -20,7 +27,13 @@ export const ImageContainer = ({ node }: ImageContainerProps) => {
             <small>€</small>
           </span>
         </div>
-        <img src={node.picture} alt={node.title} />
+        {isLoading && <div className="loader" />}
+        <img
+          src={node.picture}
+          alt={node.title}
+          onLoad={handleImageLoad}
+          onError={handleImageLoad}
+        />
         <div className="image-actions">
           <div className="image-actions-item">
             <FontAwesomeIcon

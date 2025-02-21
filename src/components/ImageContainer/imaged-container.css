@@ -8,6 +8,7 @@
 
 .image-wrapper {
   position: relative;
+  min-height: 20vh;
 }
 
 .image-wrapper > img {
