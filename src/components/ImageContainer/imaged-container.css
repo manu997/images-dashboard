@@ -6,6 +6,14 @@
   position: relative;
 }
 
+.image-wrapper {
+  position: relative;
+}
+
+.image-wrapper > img {
+  width: 100%;
+}
+
 .image-price-background {
   position: absolute;
   border-top: 3.5rem solid transparent;
@@ -22,8 +30,31 @@
   right: 1rem;
 }
 
-.image-container > img {
-  width: 100%;
+.image-actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-light-1);
+  font-size: 1.3rem;
+  gap: 2rem;
+}
+
+.image-actions-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.image-actions-item > svg {
+  cursor: pointer;
+}
+
+.like-icon {
+  color: var(--color-red-1);
 }
 
 figcaption {
@@ -44,6 +75,9 @@ figcaption {
   .image-grid {
     grid-template-columns: repeat(2, 1fr);
     margin: 0 5%;
+  }
+  .image-actions {
+    font-size: 1.2rem;
   }
 }
 
