@@ -58,6 +58,10 @@
   color: var(--color-red-1);
 }
 
+.like-icon-disabled {
+  color: var(--color-red-2);
+}
+
 figcaption {
   padding: 1.3rem;
 }

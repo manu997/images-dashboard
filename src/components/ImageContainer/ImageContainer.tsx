@@ -1,12 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import type { Image } from "../../types";
-import "./imaged-container.css";
 import {
   faHeart as faHeartOutline,
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useState } from "react";
+import useLikeImage from "../../queries/useLikeImage";
+import type { Image } from "../../types";
+import "./imaged-container.css";
+
 interface ImageContainerProps {
   node: Image;
 }
@@ -14,9 +16,19 @@ interface ImageContainerProps {
 export const ImageContainer = ({ node }: ImageContainerProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
+  const { mutateAsync } = useLikeImage();
+
   const handleImageLoad = useCallback(() => {
     setIsLoading(false);
   }, []);
+
+  const handleLike = useCallback(async () => {
+    try {
+      await mutateAsync({ imageId: node.id });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [node.id, mutateAsync]);
 
   return (
     <figure key={node.title} className="image-container">
@@ -39,6 +51,7 @@ export const ImageContainer = ({ node }: ImageContainerProps) => {
             <FontAwesomeIcon
               className="like-icon"
               icon={node.liked ? faHeart : faHeartOutline}
+              onClick={handleLike}
             />
             <span>{node.likesCount}</span>
           </div>
