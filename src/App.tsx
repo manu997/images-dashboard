@@ -1,13 +1,20 @@
-import { useCallback, useEffect, useRef } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ImageContainer } from "./components/ImageContainer/ImageContainer";
 import Input from "./components/Input/Input";
-import useGetImages, {} from "./queries/useGetImages";
+import useDebounce from "./hooks/useDebounce";
+import useGetImages from "./queries/useGetImages";
 import "./styles/app.css";
 import "./styles/loader.css";
 
 function App() {
-  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGetImages();
+  const [titleParam, setTitleParam] = useState("");
+
+  const debouncedSearch = useDebounce(titleParam);
+
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGetImages({
+    title: debouncedSearch,
+  });
 
   const observerRef = useRef<HTMLDivElement | null>(null);
 
@@ -16,6 +23,13 @@ function App() {
       await fetchNextPage();
     }
   }, [fetchNextPage, hasNextPage]);
+
+  const handleSearch = useCallback(
+    (e?: React.ChangeEvent<HTMLInputElement>) => {
+      setTitleParam(e?.target.value ?? "");
+    },
+    [],
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,6 +61,7 @@ function App() {
           type="text"
           placeholder="You're looking for something?"
           className="header-search"
+          onChange={handleSearch}
         />
       </header>
       <main>

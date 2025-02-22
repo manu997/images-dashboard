@@ -1,11 +1,14 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import request, { gql } from "graphql-request";
+import request from "graphql-request";
 import { z } from "zod";
+import { environments } from "../environments";
+import { ImagesByTitle, ImagesWithPagination } from "../resolvers";
 import { imageEdgeSchema, pageInfoSchema } from "../schemas";
 
 export interface GetImagesWithPaginationParams {
   after: string;
   first: number;
+  title?: string;
 }
 
 const getImagesWithPaginationResponse = z.object({
@@ -22,39 +25,17 @@ export type GetImagesWithPaginationResponse = z.infer<
 const getImagesWithPagination = async ({
   after,
   first,
+  title,
 }: GetImagesWithPaginationParams) => {
+  const query = title ? ImagesByTitle : ImagesWithPagination;
+
   const data = await request<GetImagesWithPaginationResponse>(
-    "https://sandbox-api-test.samyroad.com/graphql",
-    gql`
-      query GetImagesWithPagination(
-        $after: String
-        $first: Int
-      ) {
-        images(after: $after, first: $first) {
-          edges {
-              cursor,
-              node {
-                  author
-                  liked
-                  likesCount
-                  picture
-                  price
-                  title
-                  id
-              }
-          },
-          pageInfo {
-              endCursor
-              hasNextPage
-              hasPreviousPage
-              startCursor
-          }
-        }
-      }
-    `,
+    environments.GRAPHQL_BASE_URL,
+    query,
     {
       after,
       first,
+      title,
     },
   );
 
@@ -73,13 +54,16 @@ export const USE_GET_IMAGES_KEY = "getImagesWithPagination";
 
 const GET_IMAGES_MAX_ITEMS = 9;
 
-const useGetImages = () =>
+const useGetImages = ({
+  title,
+}: Pick<GetImagesWithPaginationParams, "title">) =>
   useInfiniteQuery({
-    queryKey: [USE_GET_IMAGES_KEY],
+    queryKey: [USE_GET_IMAGES_KEY, title],
     queryFn: ({ pageParam }) =>
       getImagesWithPagination({
         after: pageParam,
         first: GET_IMAGES_MAX_ITEMS,
+        title,
       }),
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.images.pageInfo.endCursor,
