@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const imageSchema = z.object({
-  author: z.string().optional(),
+  author: z.string(),
   createdAt: z.string().datetime().optional(),
-  id: z.string().optional(),
+  id: z.string(),
   liked: z.boolean(),
   likesCount: z.number().int(),
   picture: z.string().url(),

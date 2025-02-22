@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import request, { gql } from "graphql-request";
 import { z } from "zod";
 import { imageEdgeSchema, pageInfoSchema } from "../schemas";
@@ -71,10 +71,18 @@ const getImagesWithPagination = async ({
 
 export const USE_GET_IMAGES_KEY = "getImagesWithPagination";
 
-const useGetImages = ({ after, first }: GetImagesWithPaginationParams) =>
-  useQuery({
-    queryKey: [USE_GET_IMAGES_KEY, { after, first }],
-    queryFn: () => getImagesWithPagination({ after, first }),
+const GET_IMAGES_MAX_ITEMS = 9;
+
+const useGetImages = () =>
+  useInfiniteQuery({
+    queryKey: [USE_GET_IMAGES_KEY],
+    queryFn: ({ pageParam }) =>
+      getImagesWithPagination({
+        after: pageParam,
+        first: GET_IMAGES_MAX_ITEMS,
+      }),
+    initialPageParam: "",
+    getNextPageParam: (lastPage) => lastPage.images.pageInfo.endCursor,
   });
 
 export default useGetImages;
