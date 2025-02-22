@@ -6,12 +6,13 @@ import useDebounce from "./hooks/useDebounce";
 import useGetImages from "./queries/useGetImages";
 import "./styles/app.css";
 import "./styles/loader.css";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [titleParam, setTitleParam] = useState("");
 
   const debouncedSearch = useDebounce(titleParam);
-
+  const { t } = useTranslation();
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useGetImages({
     title: debouncedSearch,
   });
@@ -48,10 +49,6 @@ function App() {
     return () => observer.disconnect();
   }, [onReachEnd]);
 
-  if (error) {
-    return <>{error.message}</>;
-  }
-
   return (
     <>
       <header>
@@ -59,21 +56,28 @@ function App() {
         <Input
           icon={faSearch}
           type="text"
-          placeholder="You're looking for something?"
+          placeholder={t("SEARCH_BAR_PLACEHOLDER")}
           className="header-search"
           onChange={handleSearch}
         />
       </header>
       <main>
-        <div className="image-grid">
-          {data?.pages.map((page) =>
-            page.images.edges.map((edge) => (
-              <ImageContainer key={edge.node.picture} node={edge.node} />
-            )),
-          )}
-        </div>
-        <div ref={observerRef} style={{ height: "20px" }} />
-        {isLoading && <span className="loader" />}
+        {error ? (
+          <span>{t("QUERY_ERROR")}</span>
+        ) : isLoading ? (
+          <span className="loader" />
+        ) : (
+          <>
+            <div className="image-grid">
+              {data?.pages.map((page) =>
+                page.images.edges.map((edge) => (
+                  <ImageContainer key={edge.node.picture} node={edge.node} />
+                )),
+              )}
+            </div>
+            <div ref={observerRef} style={{ height: "20px" }} />
+          </>
+        )}
       </main>
     </>
   );

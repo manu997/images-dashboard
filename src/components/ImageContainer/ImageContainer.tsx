@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import useLikeImage from "../../queries/useLikeImage";
 import type { Image } from "../../types";
 import "./imaged-container.css";
+import { useTranslation } from "react-i18next";
 
 interface ImageContainerProps {
   node: Image;
@@ -16,6 +17,7 @@ interface ImageContainerProps {
 export const ImageContainer = ({ node }: ImageContainerProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
+  const { t } = useTranslation();
   const { mutateAsync } = useLikeImage();
 
   const handleImageLoad = useCallback(() => {
@@ -63,7 +65,7 @@ export const ImageContainer = ({ node }: ImageContainerProps) => {
       </div>
       <figcaption>
         <h1 className="image-title">{node.title.toUpperCase()}</h1>
-        <span className="author-label">by</span>
+        <span className="author-label">{t("BY").toLowerCase()}</span>
         <span>{node.author}</span>
       </figcaption>
     </figure>

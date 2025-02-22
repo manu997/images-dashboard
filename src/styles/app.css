@@ -1,6 +1,7 @@
 main {
   background-color: var(--color-light-2);
   padding: 2rem;
+  display: flex;
 }
 
 header {
