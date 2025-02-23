@@ -28,30 +28,3 @@ export const ImagesWithPagination = gql`
         }
       }
 `;
-
-export const ImagesByTitle = gql`
-  query GetImagesByTitle(
-        $title: String
-      ) {
-        images(title: $title) {
-          edges {
-              cursor,
-              node {
-                  author
-                  liked
-                  likesCount
-                  picture
-                  price
-                  title
-                  id
-              }
-          },
-          pageInfo {
-              endCursor
-              hasNextPage
-              hasPreviousPage
-              startCursor
-          }
-        }
-      }
-`;

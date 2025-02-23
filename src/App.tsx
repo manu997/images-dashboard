@@ -20,10 +20,10 @@ function App() {
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const onReachEnd = useCallback(async () => {
-    if (hasNextPage) {
+    if (!isLoading && hasNextPage) {
       await fetchNextPage();
     }
-  }, [fetchNextPage, hasNextPage]);
+  }, [fetchNextPage, isLoading, hasNextPage]);
 
   const handleSearch = useCallback(
     (e?: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,14 +68,25 @@ function App() {
           <span className="loader" />
         ) : (
           <>
-            <div className="image-grid">
-              {data?.pages.map((page) =>
-                page.images.edges.map((edge) => (
-                  <ImageContainer key={edge.node.picture} node={edge.node} />
-                )),
-              )}
-            </div>
-            <div ref={observerRef} style={{ height: "20px" }} />
+            {data?.pages[0].images.edges.length === 0 ? (
+              <span>{t("NO_RESULTS")}</span>
+            ) : (
+              <>
+                <div className="image-grid">
+                  {data?.pages.map((page) =>
+                    page.images.edges.map((edge) => (
+                      <ImageContainer
+                        key={edge.node.picture}
+                        node={edge.node}
+                      />
+                    )),
+                  )}
+                  {hasNextPage && (
+                    <div ref={observerRef} style={{ height: "20px" }} />
+                  )}
+                </div>
+              </>
+            )}
           </>
         )}
       </main>

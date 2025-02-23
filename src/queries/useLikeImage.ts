@@ -3,6 +3,7 @@ import request, { gql } from "graphql-request";
 import { z } from "zod";
 import { imageSchema } from "../schemas";
 import { USE_GET_IMAGES_KEY } from "./useGetImages";
+import { environments } from "../environments";
 
 export interface LikeImageParams {
   imageId: string;
@@ -20,7 +21,7 @@ export type LikeImageResponse = z.infer<typeof likeImageResponse>;
 
 const likeImage = async ({ imageId, clientMutationId }: LikeImageParams) => {
   const data = await request<LikeImageResponse>(
-    "https://sandbox-api-test.samyroad.com/graphql",
+    environments.GRAPHQL_BASE_URL,
     gql`
       mutation LikeImage($imageId: ID!, $clientMutationId: String) {
         likeImage(input: { imageId: $imageId, clientMutationId: $clientMutationId }) {

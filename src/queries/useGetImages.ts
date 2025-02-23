@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import request from "graphql-request";
 import { z } from "zod";
 import { environments } from "../environments";
-import { ImagesByTitle, ImagesWithPagination } from "../resolvers";
+import { ImagesWithPagination } from "../graphql/queries";
 import { imageEdgeSchema, pageInfoSchema } from "../schemas";
 
 export interface GetImagesWithPaginationParams {
@@ -27,27 +27,30 @@ const getImagesWithPagination = async ({
   first,
   title,
 }: GetImagesWithPaginationParams) => {
-  const query = title ? ImagesByTitle : ImagesWithPagination;
+  try {
+    const data = await request<GetImagesWithPaginationResponse>(
+      environments.GRAPHQL_BASE_URL,
+      ImagesWithPagination,
+      {
+        after,
+        first,
+        title,
+      },
+    );
 
-  const data = await request<GetImagesWithPaginationResponse>(
-    environments.GRAPHQL_BASE_URL,
-    query,
-    {
-      after,
-      first,
-      title,
-    },
-  );
+    const { data: parsedData, error } =
+      getImagesWithPaginationResponse.safeParse(data);
 
-  const { data: parsedData, error } =
-    getImagesWithPaginationResponse.safeParse(data);
+    if (error) {
+      console.error(error.errors);
+      throw new Error(error.errors.map((e) => e.message).join(", "));
+    }
 
-  if (error) {
-    console.error(error.errors);
-    throw new Error(error.errors.map((e) => e.message).join(", "));
+    return parsedData;
+  } catch (error) {
+    console.error(error);
+    throw new Error("An error occurred while fetching images.");
   }
-
-  return parsedData;
 };
 
 export const USE_GET_IMAGES_KEY = "getImagesWithPagination";
@@ -55,7 +58,7 @@ export const USE_GET_IMAGES_KEY = "getImagesWithPagination";
 const GET_IMAGES_MAX_ITEMS = 9;
 
 const useGetImages = ({
-  title,
+  title = "",
 }: Pick<GetImagesWithPaginationParams, "title">) =>
   useInfiniteQuery({
     queryKey: [USE_GET_IMAGES_KEY, title],

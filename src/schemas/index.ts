@@ -18,8 +18,8 @@ export const imageEdgeSchema = z.object({
 });
 
 export const pageInfoSchema = z.object({
-  endCursor: z.string(),
+  endCursor: z.string().nullable(),
   hasNextPage: z.boolean(),
   hasPreviousPage: z.boolean(),
-  startCursor: z.string(),
+  startCursor: z.string().nullable(),
 });

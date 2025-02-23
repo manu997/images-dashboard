@@ -1,5 +1,6 @@
 {
   "QUERY_ERROR": "Ha ocurrido un error al obtener los datos, por favor inténtalo de nuevo más tarde",
   "SEARCH_BAR_PLACEHOLDER": "¿Estás buscando algo?",
-  "BY": "Por"
+  "BY": "Por",
+  "NO_RESULTS": "No se encontraron resultados"
 }
