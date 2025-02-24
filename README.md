@@ -1,50 +1,31 @@
-# React + TypeScript + Vite
+## Images dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Para iniciar el proyecto en local
 
-Currently, two official plugins are available:
+1. Instalar dependencias con `npm i`
+2. Iniciar el servidor de desarrollo con `npm start`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> El archivo `environments.ts` contiene el campo `GRAPHQL_BASE_URL` el cual contiene la URI donde está ejecutándose la API graphql.
 
-## Expanding the ESLint configuration
+### Librerías que se han utilizado
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+ - `@tanstack/react-query` para manejo de peticiones a API.
+ - `i18n-react` para el manejo de literales y traducciones.
+ - `@fortawesome/*` para el uso de iconos.
+ - `@graphql-codegen/cli` para obtener los tipos que proporciona la API graphql de manera automática.
 
-- Configure the top-level `parserOptions` property like this:
+### Funcionalidades
+#### `Scroll infinito`
+  > Cuando se carga por primera vez la aplicación web, se muestran un máximo de 9 imagenes. Después, si hacemos scroll hasta abajo del todo, automáticamente se caargarán otras 9 imágenes.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+![Alt text](/readme-images/main.png "Main")
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+  #### `Dar o quitar un like a una imagen`
+  > A cada imagen que se muestra se le puede dar like pulsando el icono del corazón, en la parte inferior derecha. Para quitar el like, basta con volver a pulsar el icono.
+  
+![Alt text](/readme-images/like.png "Like")
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+  #### `Buscar por título`
+  > En la parte superior derecha de la aplicación web se encuentra un buscador. En ese elemento podremos introducir el título de una imagen para que se haga una búsqueda, y se muestre en la lista.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+![Alt text](/readme-images/search.png "Search")
