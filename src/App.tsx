@@ -17,8 +17,6 @@ function App() {
     title: debouncedSearch,
   });
 
-  console.info("data", data);
-  console.info("hasNextPage", hasNextPage);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const onReachEnd = useCallback(async () => {
@@ -52,12 +50,11 @@ function App() {
   }, [onReachEnd]);
 
   const pages = useMemo(() => data?.pages ?? [], [data?.pages]);
-  console.info("pages", pages);
+
   const images = useMemo(
     () =>
       pages.flatMap(
-        (page) =>
-          page.images.edges?.flatMap((edge) => edge?.node ?? []) ?? [],
+        (page) => page.images.edges?.flatMap((edge) => edge?.node ?? []) ?? [],
       ),
     [pages],
   );
