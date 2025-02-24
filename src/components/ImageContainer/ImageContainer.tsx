@@ -6,15 +6,15 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useState } from "react";
 import useLikeImage from "../../queries/useLikeImage";
-import type { Image } from "../../types";
 import "./imaged-container.css";
 import { useTranslation } from "react-i18next";
+import type { Image } from "../../graphql/generated/graphql";
 
 interface ImageContainerProps {
-  node: Image;
+  image: Image;
 }
 
-export const ImageContainer = ({ node }: ImageContainerProps) => {
+export const ImageContainer = ({ image }: ImageContainerProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { t } = useTranslation();
@@ -26,36 +26,40 @@ export const ImageContainer = ({ node }: ImageContainerProps) => {
 
   const handleLike = useCallback(async () => {
     try {
-      await mutateAsync({ imageId: node.id });
+      await mutateAsync({ imageId: image.id });
     } catch (error) {
       console.error(error);
     }
-  }, [node.id, mutateAsync]);
+  }, [image.id, mutateAsync]);
 
   return (
-    <figure key={node.title} className="image-container">
+    <figure key={image.title} className="image-container">
       <div className="image-wrapper">
-        <div className="image-price-background">
-          <span className="image-price">
-            {node.price.toFixed(2)}
-            <small>€</small>
-          </span>
-        </div>
+        {image.price && (
+          <div className="image-price-background">
+            <span className="image-price">
+              {image.price.toFixed(2)}
+              <small>€</small>
+            </span>
+          </div>
+        )}
         {isLoading && <div className="loader" />}
-        <img
-          src={node.picture}
-          alt={node.title}
-          onLoad={handleImageLoad}
-          onError={handleImageLoad}
-        />
+        {image.picture && (
+          <img
+            src={image.picture}
+            alt={image.title ?? ""}
+            onLoad={handleImageLoad}
+            onError={handleImageLoad}
+          />
+        )}
         <div className="image-actions">
           <div className="image-actions-item">
             <FontAwesomeIcon
               className="like-icon"
-              icon={node.liked ? faHeart : faHeartOutline}
+              icon={image.liked ? faHeart : faHeartOutline}
               onClick={handleLike}
             />
-            <span>{node.likesCount}</span>
+            <span>{image.likesCount}</span>
           </div>
           <div className="image-actions-item">
             <FontAwesomeIcon icon={faPaperPlane} />
@@ -64,9 +68,15 @@ export const ImageContainer = ({ node }: ImageContainerProps) => {
         </div>
       </div>
       <figcaption>
-        <h1 className="image-title">{node.title.toUpperCase()}</h1>
-        <span className="author-label">{t("BY").toLowerCase()}</span>
-        <span>{node.author}</span>
+        {image.title && (
+          <h1 className="image-title">{image.title.toUpperCase()}</h1>
+        )}
+        {image.author && (
+          <>
+            <span className="author-label">{t("BY").toLowerCase()}</span>
+            <span>{image.author}</span>
+          </>
+        )}
       </figcaption>
     </figure>
   );

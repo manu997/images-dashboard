@@ -7,7 +7,8 @@
     "start": "vite --host",
     "check": "npx @biomejs/biome check --write && tsc --noEmit",
     "build": "vite build",
-    "preview": "vite preview --host"
+    "preview": "vite preview --host",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.1",
@@ -16,16 +17,15 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tanstack/react-query": "^5.66.8",
-    "graphql-request": "^7.1.2",
     "i18next": "^24.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1",
-    "zod": "^3.24.2"
+    "react-i18next": "^15.4.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@eslint/js": "^9.19.0",
+    "@graphql-codegen/cli": "^5.0.5",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",

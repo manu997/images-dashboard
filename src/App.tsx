@@ -1,5 +1,5 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ImageContainer } from "./components/ImageContainer/ImageContainer";
 import Input from "./components/Input/Input";
 import useDebounce from "./hooks/useDebounce";
@@ -17,6 +17,8 @@ function App() {
     title: debouncedSearch,
   });
 
+  console.info("data", data);
+  console.info("hasNextPage", hasNextPage);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const onReachEnd = useCallback(async () => {
@@ -49,6 +51,17 @@ function App() {
     return () => observer.disconnect();
   }, [onReachEnd]);
 
+  const pages = useMemo(() => data?.pages ?? [], [data?.pages]);
+  console.info("pages", pages);
+  const images = useMemo(
+    () =>
+      pages.flatMap(
+        (page) =>
+          page.images.edges?.flatMap((edge) => edge?.node ?? []) ?? [],
+      ),
+    [pages],
+  );
+
   return (
     <>
       <header>
@@ -68,24 +81,17 @@ function App() {
           <span className="loader" />
         ) : (
           <>
-            {data?.pages[0].images.edges.length === 0 ? (
+            {images.length === 0 ? (
               <span>{t("NO_RESULTS")}</span>
             ) : (
-              <>
-                <div className="image-grid">
-                  {data?.pages.map((page) =>
-                    page.images.edges.map((edge) => (
-                      <ImageContainer
-                        key={edge.node.picture}
-                        node={edge.node}
-                      />
-                    )),
-                  )}
-                  {hasNextPage && (
-                    <div ref={observerRef} style={{ height: "20px" }} />
-                  )}
-                </div>
-              </>
+              <div className="image-grid">
+                {images.map((image) => (
+                  <ImageContainer key={image.id} image={image} />
+                ))}
+                {hasNextPage && (
+                  <div ref={observerRef} style={{ height: "20px" }} />
+                )}
+              </div>
             )}
           </>
         )}
