@@ -32,6 +32,25 @@ export const ImageContainer = ({ image }: ImageContainerProps) => {
     }
   }, [image.id, mutateAsync]);
 
+  const ImageActions = useCallback(() => {
+    return (
+      <>
+        <div className="image-actions-item">
+          <FontAwesomeIcon
+            className="like-icon"
+            icon={image.liked ? faHeart : faHeartOutline}
+            onClick={handleLike}
+          />
+          <span>{image.likesCount}</span>
+        </div>
+        <div className="image-actions-item">
+          <FontAwesomeIcon icon={faPaperPlane} />
+          <span>0</span>
+        </div>
+      </>
+    );
+  }, [image.liked, image.likesCount, handleLike]);
+
   return (
     <figure key={image.title} className="image-container">
       <div className="image-wrapper">
@@ -53,18 +72,7 @@ export const ImageContainer = ({ image }: ImageContainerProps) => {
           />
         )}
         <div className="image-actions">
-          <div className="image-actions-item">
-            <FontAwesomeIcon
-              className="like-icon"
-              icon={image.liked ? faHeart : faHeartOutline}
-              onClick={handleLike}
-            />
-            <span>{image.likesCount}</span>
-          </div>
-          <div className="image-actions-item">
-            <FontAwesomeIcon icon={faPaperPlane} />
-            <span>0</span>
-          </div>
+          <ImageActions />
         </div>
       </div>
       <figcaption>
@@ -77,6 +85,9 @@ export const ImageContainer = ({ image }: ImageContainerProps) => {
             <span>{image.author}</span>
           </>
         )}
+        <div className="responsive-actions">
+          <ImageActions />
+        </div>
       </figcaption>
     </figure>
   );
