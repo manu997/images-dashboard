@@ -35,13 +35,16 @@ export const ImageContainer = ({ image }: ImageContainerProps) => {
   const ImageActions = useCallback(() => {
     return (
       <>
-        <div className="image-actions-item">
+        <div className="image-actions-item" data-testid="like-button-container">
           <FontAwesomeIcon
             className="like-icon"
             icon={image.liked ? faHeart : faHeartOutline}
             onClick={handleLike}
+            data-testid={`like-button-${image.id}`}
           />
-          <span>{image.likesCount}</span>
+          <span data-testid={`like-counter-${image.id}`}>
+            {image.likesCount}
+          </span>
         </div>
         <div className="image-actions-item">
           <FontAwesomeIcon icon={faPaperPlane} />
@@ -49,14 +52,17 @@ export const ImageContainer = ({ image }: ImageContainerProps) => {
         </div>
       </>
     );
-  }, [image.liked, image.likesCount, handleLike]);
+  }, [image.liked, image.id, image.likesCount, handleLike]);
 
   return (
     <figure key={image.title} className="image-container">
       <div className="image-wrapper">
         {image.price && (
           <div className="image-price-background">
-            <span className="image-price">
+            <span
+              className="image-price"
+              data-testid={`image-price-${image.id}`}
+            >
               {image.price.toFixed(2)}
               <small>€</small>
             </span>
@@ -77,17 +83,17 @@ export const ImageContainer = ({ image }: ImageContainerProps) => {
       </div>
       <figcaption>
         {image.title && (
-          <h1 className="image-title">{image.title.toUpperCase()}</h1>
+          <h1 className="image-title" data-testid={`image-title-${image.id}`}>
+            {image.title.toUpperCase()}
+          </h1>
         )}
         {image.author && (
           <>
             <span className="author-label">{t("BY").toLowerCase()}</span>
-            <span>{image.author}</span>
+            <span data-testid={`image-author-${image.id}`}>{image.author}</span>
           </>
         )}
-        <div className="responsive-actions">
-          <ImageActions />
-        </div>
+        <div className="responsive-actions">{/* <ImageActions /> */}</div>
       </figcaption>
     </figure>
   );
